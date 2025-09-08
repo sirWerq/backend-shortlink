@@ -1,0 +1,21 @@
+{
+    "name": "backend-short-link",
+    "version": "1.0.0",
+    "description": "code for shortlink project",
+    "main": "./src/app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon ./src/app.js",
+        "start": "node ./src/app.js"
+    },
+    "keywords": [
+        "shortlink"
+    ],
+    "author": "sirWerq",
+    "license": "ISC",
+    "dependencies": {
+        "@supabase/supabase-js": "^2.57.2",
+        "dotenv": "^17.2.2",
+        "express": "^5.1.0"
+    }
+}
