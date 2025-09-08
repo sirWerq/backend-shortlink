@@ -16,7 +16,7 @@ const postShortlinkController = async (req, res) => {
             .select()
             .eq("link", url);
         if (checkErrorData) {
-            throw new Error("Internal Server Error");
+            throw new Error();
         }
         if (checkData.length === 0) {
             const characters =
@@ -57,4 +57,26 @@ const postShortlinkController = async (req, res) => {
     }
 };
 
-module.exports = { postShortlinkController };
+const redirectShortlinkController = async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (!id) {
+            throw new Error();
+        }
+        const { data: checkData, error: checkErrorData } = await supabase
+            .from("link_table")
+            .select()
+            .eq("shortlink", `https://${process.env.BASE_URL_SHORTLINK}/${id}`)
+            .single();
+        if (checkErrorData || checkData.length === 0) {
+            throw new Error();
+        }
+        if (checkData) {
+            res.redirect(checkData.link);
+        }
+    } catch (err) {
+        return res.redirect("https://www.example.com");
+    }
+};
+
+module.exports = { postShortlinkController, redirectShortlinkController };
