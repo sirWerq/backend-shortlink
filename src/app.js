@@ -10,8 +10,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
     cors({
-        origin: ["http://localhost:5173", "shortlink-amia.up.railway.app"],
+        origin: [
+            "http://localhost:5173",
+            "https://shortlink-amia.up.railway.app",
+        ],
         methods: ["GET", "POST", "PUT", "DELETE"],
+        credentials: true,
     })
 );
 
