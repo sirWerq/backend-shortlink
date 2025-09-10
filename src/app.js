@@ -3,9 +3,17 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT;
 const router = require("./routers/shortlink");
+const cors = require("cors");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(
+    cors({
+        origin: ["http://localhost:5173", "shortlink-amia.up.railway.app"],
+        methods: ["GET", "POST", "PUT", "DELETE"],
+    })
+);
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
