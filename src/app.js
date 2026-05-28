@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
     res.send("Hello World!");
 });
 
-app.use(router);
+app.use("/api", router);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
