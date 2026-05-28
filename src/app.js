@@ -11,12 +11,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
     cors({
         origin: [
-            // "http://localhost:5173",
-            "https://shortlink-amia.up.railway.app",
+            process.env.BASE_FE ? process.env.BASE_FE : "http://localhost:5173",
         ],
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
-    })
+    }),
 );
 
 app.get("/", (req, res) => {
